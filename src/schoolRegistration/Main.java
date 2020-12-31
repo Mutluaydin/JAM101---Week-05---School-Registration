@@ -1,13 +1,16 @@
 package schoolRegistration;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String [] args){
 
         Ogrenci[] ogrencis = createOgrenci(1);
         for (Ogrenci ogrenci:ogrencis) {
-            System.out.println("Ogrenci1 " + ogrenci.getFirstName() + " Ogrenci No "  + ogrenci.getOgrenciNo());
+            System.out.println("Ogrencinin Adi: " + ogrenci.getFirstName() + "\n" + "Soyadi: " + ogrenci.getLastName()
+                    + "\n" + "Yasi: " + ogrenci.getAge()+ "\n" + "Ogrenci No "  + ogrenci.getOgrenciNo());
         }
     }
 
@@ -27,12 +30,11 @@ public class Main {
             // System.out.println(lastName.toUpperCase(Locale.ROOT));
 
             System.out.println((i + 1) + ". Ogrencinin yasini giriniz: ");
-            int age = input.nextInt();
+            ogrenci.setAge(input.nextInt());
 
-            if (6 > age || age > 10) {
+            while (6 > ogrenci.getAge() || ogrenci.getAge() > 10) {
                 System.out.println("Ogrencinin yasini 6 ile 10 arasi bir deger giriniz: ");
-            }else {
-                ogrenci.setAge(age);
+                ogrenci.setAge(input.nextInt());
             }
 
             ogrenci.setOgrenciNo(ogrenci.getFirstName().substring(0, 2).toUpperCase() +
@@ -48,4 +50,5 @@ public class Main {
 
         return sinifs;
     }
+
 }
